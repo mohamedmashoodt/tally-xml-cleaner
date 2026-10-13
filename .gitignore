@@ -1,0 +1,12 @@
+# Tally XML & Data files (Keep business data private)
+*.xml
+*.TBK
+
+# Scratch and temporary logs
+scratch/
+*.log
+cb.txt
+gemini_page.html
+dom_out.html
+social_preview.html
+rendered_dom.html
