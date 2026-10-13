@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tally XML Cleaner Pro | ടാലി എക്സ്എംഎൽ ക്ലീനർ</title>
+  <title>Tally XML Cleaner Pro | Developed by Mohamed Mashood T</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -112,7 +112,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(10, 14, 23, 0.8);
+      background: rgba(10, 14, 23, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--card-border);
@@ -125,6 +125,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1rem;
     }
 
     .logo-group {
@@ -144,6 +145,7 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 16px var(--primary-glow);
+      flex-shrink: 0;
     }
 
     .logo-icon svg {
@@ -168,11 +170,39 @@
       letter-spacing: 0.02em;
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .creator-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      color: #c7d2fe;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .creator-pill:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: rgba(99, 102, 241, 0.45);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
     .badge-privacy {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      padding: 0.4rem 0.85rem;
+      padding: 0.35rem 0.85rem;
       border-radius: 9999px;
       background: rgba(16, 185, 129, 0.1);
       border: 1px solid rgba(16, 185, 129, 0.25);
@@ -214,7 +244,7 @@
     /* Hero Section */
     .hero {
       text-align: center;
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -226,7 +256,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.35rem 0.9rem;
+      padding: 0.35rem 0.95rem;
       border-radius: 9999px;
       background: rgba(99, 102, 241, 0.12);
       border: 1px solid rgba(99, 102, 241, 0.3);
@@ -237,7 +267,7 @@
     }
 
     .hero-title {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(2rem, 5vw, 3.1rem);
       font-weight: 800;
       line-height: 1.15;
       letter-spacing: -0.03em;
@@ -253,7 +283,7 @@
       font-size: 0.98rem;
       color: var(--text-muted);
       line-height: 1.6;
-      max-width: 620px;
+      max-width: 650px;
     }
 
     /* Cards Style */
@@ -366,7 +396,7 @@
       font-size: 0.88rem;
       font-weight: 700;
       color: #e2e8f0;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
 
     .option-content p {
@@ -657,57 +687,50 @@
       border-top: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    .steps-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .step-box {
-      display: flex;
-      gap: 0.8rem;
-      align-items: flex-start;
-    }
-
-    .step-num {
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
-      background: rgba(99, 102, 241, 0.2);
-      color: #a5b4fc;
-      font-size: 0.72rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
     /* Footer */
     footer {
       border-top: 1px solid var(--card-border);
-      background: rgba(10, 14, 23, 0.9);
-      padding: 2rem 1.5rem;
+      background: rgba(10, 14, 23, 0.92);
+      padding: 2.2rem 1.5rem;
       text-align: center;
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       color: var(--text-dim);
       margin-top: auto;
       z-index: 10;
     }
 
-    footer a {
-      color: #a5b4fc;
-      text-decoration: none;
-      transition: color 0.2s;
+    .dev-credit {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 0.4rem;
     }
 
-    footer a:hover {
-      color: #fff;
+    .dev-credit a {
+      color: #38bdf8;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s, text-decoration 0.2s;
+    }
+
+    .dev-credit a:hover {
+      color: #7dd3fc;
+      text-decoration: underline;
     }
 
     /* Responsive */
     @media (max-width: 640px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .nav-right {
+        width: 100%;
+        justify-content: space-between;
+      }
       main {
         padding: 1.5rem 1rem 3rem;
         gap: 1.5rem;
@@ -746,13 +769,20 @@
         </div>
         <div class="logo-text">
           <h1>Tally XML Studio</h1>
-          <p>ടാലി എക്സ്എംഎൽ ക്ലീനർ</p>
+          <p>Duplicate ID &amp; Balance Stripper</p>
         </div>
       </a>
 
-      <div class="badge-privacy">
-        <span class="pulse-dot"></span>
-        <span>100% Client-Side Privacy</span>
+      <div class="nav-right">
+        <a href="https://github.com/mohamedmashoodt" target="_blank" rel="noopener noreferrer" class="creator-pill">
+          <span>Developed by</span>
+          <strong style="color: #fff;">Mohamed Mashood T</strong>
+        </a>
+
+        <div class="badge-privacy">
+          <span class="pulse-dot"></span>
+          <span>100% Client-Side Privacy</span>
+        </div>
       </div>
     </div>
   </header>
@@ -766,7 +796,7 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
         </svg>
-        <span>Zero Server Uploads &bull; Offline Ready</span>
+        <span>Zero Server Uploads &bull; 100% In-Browser &bull; Offline Ready</span>
       </div>
 
       <h2 class="hero-title">
@@ -774,7 +804,7 @@
       </h2>
 
       <p class="hero-subtitle">
-        മാസങ്ങൾ തോറും എക്സ്പോർട്ട് ചെയ്ത XML ഫയലുകൾ ഇമ്പോർട്ട് ചെയ്യുമ്പോൾ മുൻപുള്ള വൗച്ചറുകൾ നഷ്ടപ്പെടുന്നത് ഒഴിവാക്കാനും, പാർട്ടി ലെഡ്ജർ ഓപ്പണിംഗ് ബാലൻസ് സംരക്ഷിക്കാനുമുള്ള പ്രൊഫഷണൽ ടൂൾ.
+        Prevent voucher overwrites when importing monthly XML backups into Tally. Effortlessly strip duplicate GUIDs, Master IDs, and protect ledger opening balances.
       </p>
     </section>
 
@@ -786,7 +816,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
-          <span>ക്ലീനിംഗ് ഓപ്ഷനുകൾ (Settings)</span>
+          <span>Cleaning Configuration</span>
         </div>
         <span style="font-size: 0.72rem; color: #38bdf8; background: rgba(56, 189, 248, 0.1); padding: 0.25rem 0.65rem; border-radius: 6px; font-weight: 700;">
           Auto Recommended
@@ -801,8 +831,8 @@
             <span class="slider"></span>
           </div>
           <div class="option-content">
-            <h4>Voucher Unique IDs ഒഴിവാക്കുക</h4>
-            <p>വൗച്ചറുകളിലെ <code>GUID</code>, <code>MASTERID</code>, <code>VOUCHERKEY</code> നീക്കം ചെയ്ത് പഴയ ഡാറ്റ മാഞ്ഞുപോകുന്നത് തടയുന്നു.</p>
+            <h4>Strip Voucher Unique IDs</h4>
+            <p>Removes internal <code>GUID</code>, <code>MASTERID</code>, and <code>VOUCHERKEY</code> to prevent overwriting existing transactions.</p>
           </div>
         </label>
 
@@ -813,8 +843,8 @@
             <span class="slider"></span>
           </div>
           <div class="option-content">
-            <h4>Voucher Header Attributes ക്ലീൻ ചെയ്യുക</h4>
-            <p><code>REMOTEID</code>, <code>VCHKEY</code> ഒഴിവാക്കി പുതിയ <code>ACTION="Create"</code> വൗച്ചറുകളായി മാറ്റുന്നു.</p>
+            <h4>Clean Voucher Headers</h4>
+            <p>Removes <code>REMOTEID</code> and <code>VCHKEY</code> attributes, ensuring vouchers are imported as fresh <code>ACTION="Create"</code> entries.</p>
           </div>
         </label>
 
@@ -825,8 +855,8 @@
             <span class="slider"></span>
           </div>
           <div class="option-content">
-            <h4>Opening Balance ടാഗുകൾ ഒഴിവാക്കുക</h4>
-            <p>ലെഡ്ജറുകളുടെ <code>&lt;OPENINGBALANCE&gt;</code> ഒഴിവാക്കി നിലവിലെ കമ്പനി ബാലൻസ് മാറ്റമില്ലാതെ സൂക്ഷിക്കുന്നു.</p>
+            <h4>Remove Opening Balances</h4>
+            <p>Strips <code>&lt;OPENINGBALANCE&gt;</code> tags from party ledgers to protect existing balances in the target company.</p>
           </div>
         </label>
 
@@ -837,8 +867,8 @@
             <span class="slider"></span>
           </div>
           <div class="option-content">
-            <h4>Company Name Lock ഒഴിവാക്കുക</h4>
-            <p><code>&lt;SVCURRENTCOMPANY&gt;</code> ടാഗ് നീക്കം ചെയ്ത് ഏത് പേരിലുള്ള കമ്പനിയിലേക്കും സുഗമമായി കയറ്റാം.</p>
+            <h4>Remove Company Lock</h4>
+            <p>Removes <code>&lt;SVCURRENTCOMPANY&gt;</code> so the XML can be imported into any target company name without mismatch errors.</p>
           </div>
         </label>
       </div>
@@ -856,14 +886,14 @@
         </div>
 
         <div class="drop-text">
-          <h3>Tally XML ഫയലുകൾ ഇവിടെ ഇടുക</h3>
-          <p>Drag and drop your DayBook.xml file here, or click to browse</p>
+          <h3>Drop Tally XML Files Here</h3>
+          <p>Drag &amp; drop your DayBook.xml or exported files here, or click to browse</p>
         </div>
 
         <div class="drop-pills">
           <span class="drop-pill">⚡ UTF-16LE &amp; UTF-8 Auto Detect</span>
           <span class="drop-pill">⚡ Multi-file Batch Support</span>
-          <span class="drop-pill">⚡ 100% In-Memory Process</span>
+          <span class="drop-pill">⚡ 100% In-Memory Processing</span>
         </div>
       </div>
     </section>
@@ -872,7 +902,7 @@
     <section id="resultsContainer" class="results-wrapper" style="display: none;">
       <h3 style="font-size: 1.05rem; font-weight: 800; display: flex; align-items: center; gap: 0.5rem;">
         <span style="color: #10b981;">✓</span>
-        <span>പ്രോസസ്സ് ചെയ്ത ഫയലുകൾ (Processed Files)</span>
+        <span>Processed Files</span>
       </h3>
       <div id="fileCardsList" style="display: flex; flex-direction: column; gap: 1rem;">
         <!-- Injected dynamically -->
@@ -886,36 +916,36 @@
           <circle cx="12" cy="12" r="10"/>
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-4m0-4h.01"/>
         </svg>
-        <span>ടാലിയിൽ ഇമ്പോർട്ട് ചെയ്യുമ്പോൾ പാലിക്കേണ്ട ഘട്ടങ്ങൾ</span>
+        <span>Important Steps for Importing into Tally</span>
       </h3>
 
       <div class="accordion-item open" id="acc1">
         <div class="accordion-header" onclick="toggleAcc('acc1')">
-          <span>ഘട്ടം 1: നിർബന്ധമായും കമ്പനി Backup എടുക്കുക</span>
+          <span>Step 1: Take a Full Company Backup First</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
         </div>
         <div class="accordion-body">
-          ടാലിയിൽ ഏതൊരു XML ഫയൽ ഇമ്പോർട്ട് ചെയ്യുന്നതിന് മുൻപും നിലവിലെ മെയിൻ കമ്പനിയുടെ ബാക്കപ്പ് (<code>TBK</code> ഫയൽ) സുരക്ഷിതമായ ഒരു ഫോൾഡറിലേക്ക് എടുത്തു വെക്കുക.
+          Always create a backup of your destination company (<code>TBK</code> file) before importing any external XML files.
         </div>
       </div>
 
       <div class="accordion-item" id="acc2">
         <div class="accordion-header" onclick="toggleAcc('acc2')">
-          <span>ഘട്ടം 2: Voucher Numbering ക്രമീകരിക്കുക</span>
+          <span>Step 2: Configure Voucher Numbering Method</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
         </div>
         <div class="accordion-body">
-          മെയിൻ കമ്പനിയിൽ <code>Alter &rarr; Voucher Type</code> എടുത്ത് ബന്ധപ്പെട്ട വൗച്ചറുകളിൽ (Sales, Purchase etc.) <strong>Method of Voucher Numbering</strong> എന്നത് <strong>Automatic (Manual Override)</strong> അല്ലെങ്കിൽ <strong>Manual</strong> ആക്കി മാറ്റുക. ഇത് നമ്പറുകൾ തനിയെ മാറിപ്പോകുന്നത് തടയും.
+          In Tally, navigate to <code>Alter &rarr; Voucher Type</code> for the relevant vouchers (Sales, Purchase, etc.). Set <strong>Method of Voucher Numbering</strong> to <strong>Automatic (Manual Override)</strong> or <strong>Manual</strong> to prevent voucher numbers from shifting.
         </div>
       </div>
 
       <div class="accordion-item" id="acc3">
         <div class="accordion-header" onclick="toggleAcc('acc3')">
-          <span>ഘട്ടം 3: Transactions ഇമ്പോർട്ട് ചെയ്യുക</span>
+          <span>Step 3: Import Cleaned Transactions</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
         </div>
         <div class="accordion-body">
-          ടാലിയിൽ <code>Import &rarr; Transactions</code> ക്ലിക്ക് ചെയ്ത് ഈ ടൂൾ വഴി ക്ലീൻ ചെയ്ത <code>Cleaned_DayBook.xml</code> ഫയൽ തിരഞ്ഞെടുത്ത് ഇമ്പോർട്ട് ചെയ്യുക. പഴയ ഡാറ്റകൾ സുരക്ഷിതമായി നിലനിന്നുകൊണ്ട് പുതിയ എൻട്രികൾ ആഡ് ആകും.
+          Go to <code>Import &rarr; Transactions</code> in Tally, select your cleaned <code>Cleaned_DayBook.xml</code> file, and import. Your new transactions will be added smoothly without overwriting existing data.
         </div>
       </div>
     </section>
@@ -924,9 +954,13 @@
 
   <!-- Footer -->
   <footer>
-    <div style="max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-      <p><strong>Tally XML Studio</strong> &bull; Client-Side Accounting Utilities &bull; Open Source</p>
-      <p style="font-size: 0.72rem; color: #475569;">No server dependencies &bull; Zero tracking &bull; 100% Data Confidentiality</p>
+    <div style="max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.6rem; align-items: center;">
+      <div class="dev-credit">
+        <span>Designed &amp; Developed by</span>
+        <a href="https://github.com/mohamedmashoodt" target="_blank" rel="noopener noreferrer">Mohamed Mashood T</a>
+      </div>
+      <p style="font-size: 0.74rem; color: #64748b;"><strong>Tally XML Studio</strong> &bull; Client-Side Accounting Utilities &bull; Free &amp; Open Source</p>
+      <p style="font-size: 0.70rem; color: #475569;">Zero server dependencies &bull; Zero tracking &bull; 100% Data Confidentiality</p>
     </div>
   </footer>
 
@@ -978,7 +1012,7 @@
       resultsContainer.style.display = 'flex';
       for (const file of files) {
         if (!file.name.toLowerCase().endsWith('.xml')) {
-          alert(file.name + ' XML ഫയൽ അല്ല.');
+          alert(file.name + ' is not an XML file.');
           continue;
         }
         await processXmlFile(file);
@@ -1013,7 +1047,7 @@
             </div>
             <div class="file-details">
               <h4>${file.name}</h4>
-              <p>ഫയൽ വലിപ്പം: ${formatBytes(file.size)} &bull; പ്രോസസ്സ് ചെയ്യുന്നു...</p>
+              <p>File size: ${formatBytes(file.size)} &bull; Processing...</p>
             </div>
           </div>
           <span style="font-size: 0.78rem; color: #a5b4fc; font-weight: 600;">Processing...</span>
@@ -1106,7 +1140,7 @@
                 </div>
                 <div class="file-details">
                   <h4>${cleanedFileName}</h4>
-                  <p>ക്ലീനിംഗ് വിജയകരമായി പൂർത്തിയായി &bull; Ready to download</p>
+                  <p>Cleaned successfully &bull; Ready for Tally import</p>
                 </div>
               </div>
 
@@ -1114,7 +1148,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                 </svg>
-                <span>ഡൗൺലോഡ് ചെയ്യുക (${formatBytes(outputBlob.size)})</span>
+                <span>Download (${formatBytes(outputBlob.size)})</span>
               </a>
             </div>
 
@@ -1152,7 +1186,7 @@
                 </div>
                 <div class="file-details">
                   <h4>${file.name}</h4>
-                  <p style="color: #f87171;">എറർ സംഭവിച്ചു: ${err.message}</p>
+                  <p style="color: #f87171;">Error processing file: ${err.message}</p>
                 </div>
               </div>
             </div>
