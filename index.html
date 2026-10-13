@@ -831,8 +831,8 @@
             <span class="slider"></span>
           </div>
           <div class="option-content">
-            <h4>Strip Voucher Unique IDs</h4>
-            <p>Removes internal <code>GUID</code>, <code>MASTERID</code>, and <code>VOUCHERKEY</code> to prevent overwriting existing transactions.</p>
+            <h4>Strip Internal Unique IDs</h4>
+            <p>Removes internal <code>GUID</code>, <code>MASTERID</code>, <code>ALTERID</code>, <code>VOUCHERKEY</code>, and <code>VOUCHERRETAINKEY</code> tags to prevent overwriting existing transactions.</p>
           </div>
         </label>
 
@@ -843,8 +843,8 @@
             <span class="slider"></span>
           </div>
           <div class="option-content">
-            <h4>Clean Voucher Headers</h4>
-            <p>Removes <code>REMOTEID</code> and <code>VCHKEY</code> attributes, ensuring vouchers are imported as fresh <code>ACTION="Create"</code> entries.</p>
+            <h4>Clean Voucher Header Attributes</h4>
+            <p>Removes <code>REMOTEID="..."</code> and <code>VCHKEY="..."</code> attributes from <code>&lt;VOUCHER&gt;</code> tags, ensuring vouchers import as fresh entries.</p>
           </div>
         </label>
 
@@ -855,8 +855,8 @@
             <span class="slider"></span>
           </div>
           <div class="option-content">
-            <h4>Remove Opening Balances</h4>
-            <p>Strips <code>&lt;OPENINGBALANCE&gt;</code> tags from party ledgers to protect existing balances in the target company.</p>
+            <h4>Remove Opening Balances <span style="font-size: 0.72rem; color: #38bdf8; font-weight: 700;">(Optional)</span></h4>
+            <p>Strips <code>&lt;OPENINGBALANCE&gt;</code> tags from party ledgers to protect existing ledger balances in the destination company.</p>
           </div>
         </label>
 
@@ -1084,30 +1084,43 @@
           let vouchersCount = 0;
           let openingBalanceCount = 0;
 
-          // 1. Voucher Header Attributes
+          // 1. Voucher Header Attributes (REMOTEID, VCHKEY inside <VOUCHER ...>)
           if (optVoucherHeaders) {
-            text = text.replace(/ REMOTEID="[^"]*"/g, '');
-            text = text.replace(/ VCHKEY="[^"]*"/g, '');
+            text = text.replace(/<VOUCHER\b([^>]*)>/gi, (match, attrs) => {
+              let cleanedAttrs = attrs
+                .replace(/\s+REMOTEID=(?:"[^"]*"|'[^']*')/gi, '')
+                .replace(/\s+VCHKEY=(?:"[^"]*"|'[^']*')/gi, '');
+              return `<VOUCHER${cleanedAttrs}>`;
+            });
+            // Fallback for any stray occurrences
+            text = text.replace(/\s+REMOTEID=(?:"[^"]*"|'[^']*')/gi, '');
+            text = text.replace(/\s+VCHKEY=(?:"[^"]*"|'[^']*')/gi, '');
           }
 
-          // 2. Vouchers block clean
+          // 2. Vouchers block clean (Strip GUID, MASTERID, ALTERID, VOUCHERKEY, VOUCHERRETAINKEY)
           if (optVoucherIds) {
-            text = text.replace(/<VOUCHER\b[\s\S]*?<\/VOUCHER>/g, (vch) => {
+            text = text.replace(/<VOUCHER\b[\s\S]*?<\/VOUCHER>/gi, (vch) => {
               vouchersCount++;
-              vch = vch.replace(/<GUID>[\s\S]*?<\/GUID>\s*/g, '');
-              vch = vch.replace(/<MASTERID>[\s\S]*?<\/MASTERID>\s*/g, '');
-              vch = vch.replace(/<ALTERID>[\s\S]*?<\/ALTERID>\s*/g, '');
-              vch = vch.replace(/<VOUCHERKEY>[\s\S]*?<\/VOUCHERKEY>\s*/g, '');
-              vch = vch.replace(/<VOUCHERRETAINKEY>[\s\S]*?<\/VOUCHERRETAINKEY>\s*/g, '');
-              return vch;
+              return vch
+                .replace(/<GUID\b[^>]*>[\s\S]*?<\/GUID>\s*/gi, '')
+                .replace(/<GUID\b[^>]*\/>\s*/gi, '')
+                .replace(/<MASTERID\b[^>]*>[\s\S]*?<\/MASTERID>\s*/gi, '')
+                .replace(/<MASTERID\b[^>]*\/>\s*/gi, '')
+                .replace(/<ALTERID\b[^>]*>[\s\S]*?<\/ALTERID>\s*/gi, '')
+                .replace(/<ALTERID\b[^>]*\/>\s*/gi, '')
+                .replace(/<VOUCHERKEY\b[^>]*>[\s\S]*?<\/VOUCHERKEY>\s*/gi, '')
+                .replace(/<VOUCHERKEY\b[^>]*\/>\s*/gi, '')
+                .replace(/<VOUCHERRETAINKEY\b[^>]*>[\s\S]*?<\/VOUCHERRETAINKEY>\s*/gi, '')
+                .replace(/<VOUCHERRETAINKEY\b[^>]*\/>\s*/gi, '');
             });
           }
 
-          // 3. Opening Balance removal
+          // 3. Opening Balance removal (Optional)
           if (optOpeningBalance) {
-            const matches = text.match(/<OPENINGBALANCE>[\s\S]*?<\/OPENINGBALANCE>/g);
+            const matches = text.match(/<OPENINGBALANCE\b[^>]*>[\s\S]*?<\/OPENINGBALANCE>/gi);
             if (matches) openingBalanceCount = matches.length;
-            text = text.replace(/<OPENINGBALANCE>[\s\S]*?<\/OPENINGBALANCE>\s*/g, '');
+            text = text.replace(/<OPENINGBALANCE\b[^>]*>[\s\S]*?<\/OPENINGBALANCE>\s*/gi, '');
+            text = text.replace(/<OPENINGBALANCE\b[^>]*\/>\s*/gi, '');
           }
 
           // 4. Current company tag removal

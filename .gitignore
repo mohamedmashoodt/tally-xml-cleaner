@@ -10,3 +10,5 @@ gemini_page.html
 dom_out.html
 social_preview.html
 rendered_dom.html
+__pycache__/
+*.pyc
