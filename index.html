@@ -1119,6 +1119,27 @@
           if (optOpeningBalance) {
             const matches = text.match(/<OPENINGBALANCE\b[^>]*>[\s\S]*?<\/OPENINGBALANCE>/gi);
             if (matches) openingBalanceCount = matches.length;
+
+            // Clean Stock Items Opening Balances, Values, Rates & Batch Allocations
+            text = text.replace(/<STOCKITEM\b[\s\S]*?<\/STOCKITEM>/gi, (item) => {
+              item = item.replace(/<OPENINGBALANCE\b[^>]*>[\s\S]*?<\/OPENINGBALANCE>\s*/gi, '');
+              item = item.replace(/<OPENINGBALANCE\b[^>]*\/>\s*/gi, '');
+              item = item.replace(/<OPENINGVALUE\b[^>]*>[\s\S]*?<\/OPENINGVALUE>\s*/gi, '');
+              item = item.replace(/<OPENINGVALUE\b[^>]*\/>\s*/gi, '');
+              item = item.replace(/<OPENINGRATE\b[^>]*>[\s\S]*?<\/OPENINGRATE>\s*/gi, '');
+              item = item.replace(/<OPENINGRATE\b[^>]*\/>\s*/gi, '');
+              if (/<BATCHALLOCATIONS\.LIST\b/i.test(item)) {
+                item = item.replace(/<BATCHALLOCATIONS\.LIST\b[^>]*>[\s\S]*?<\/BATCHALLOCATIONS\.LIST>\s*/gi, '');
+                if (/<TRADEREXCISEDUTIES\.LIST>/i.test(item)) {
+                  item = item.replace(/<TRADEREXCISEDUTIES\.LIST>/i, '<BATCHALLOCATIONS.LIST>      </BATCHALLOCATIONS.LIST>\n      <TRADEREXCISEDUTIES.LIST>');
+                } else {
+                  item = item.replace(/<\/STOCKITEM>/i, '<BATCHALLOCATIONS.LIST>      </BATCHALLOCATIONS.LIST>\n     </STOCKITEM>');
+                }
+              }
+              return item;
+            });
+
+            // Clean remaining Opening Balances (Ledgers etc.)
             text = text.replace(/<OPENINGBALANCE\b[^>]*>[\s\S]*?<\/OPENINGBALANCE>\s*/gi, '');
             text = text.replace(/<OPENINGBALANCE\b[^>]*\/>\s*/gi, '');
           }

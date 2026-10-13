@@ -38,11 +38,30 @@ for filename in os.listdir(folder_path):
 
         content = re.sub(r'<VOUCHER\b.*?</VOUCHER>', clean_voucher_block, content, flags=re.DOTALL | re.IGNORECASE)
 
-        # 3. OPENINGBALANCE tag-ukal ozhivakkunnu
+        # 3. Stock Items Opening Balances & Batch Allocations clean cheyyunnu
+        def clean_stock_item_block(match):
+            item = match.group(0)
+            for tag in ["OPENINGBALANCE", "OPENINGVALUE", "OPENINGRATE"]:
+                item = re.sub(rf'<{tag}\b[^>]*>.*?</{tag}>\s*', '', item, flags=re.DOTALL | re.IGNORECASE)
+                item = re.sub(rf'<{tag}\b[^>]*/>\s*', '', item, flags=re.IGNORECASE)
+            if "<BATCHALLOCATIONS.LIST>" in item:
+                item = re.sub(r'<BATCHALLOCATIONS\.LIST\b[^>]*>.*?</BATCHALLOCATIONS\.LIST>\s*', '', item, flags=re.DOTALL | re.IGNORECASE)
+                if "<TRADEREXCISEDUTIES.LIST>" in item:
+                    item = item.replace("<TRADEREXCISEDUTIES.LIST>", "<BATCHALLOCATIONS.LIST>      </BATCHALLOCATIONS.LIST>\n      <TRADEREXCISEDUTIES.LIST>", 1)
+                else:
+                    item = item.replace("</STOCKITEM>", "<BATCHALLOCATIONS.LIST>      </BATCHALLOCATIONS.LIST>\n     </STOCKITEM>", 1)
+            return item
+
+        content = re.sub(r'<STOCKITEM\b.*?</STOCKITEM>', clean_stock_item_block, content, flags=re.DOTALL | re.IGNORECASE)
+
+        # 4. Baakiyulla OPENINGBALANCE tag-ukal (Ledgers etc.) ozhivakkunnu
         content = re.sub(r'<OPENINGBALANCE\b[^>]*>.*?</OPENINGBALANCE>\s*', '', content, flags=re.DOTALL | re.IGNORECASE)
         content = re.sub(r'<OPENINGBALANCE\b[^>]*/>\s*', '', content, flags=re.IGNORECASE)
 
-        # 4. Puthiya file aayi save cheyyunnu
+        # 5. SVCURRENTCOMPANY ozhivakkunnu
+        content = re.sub(r'<SVCURRENTCOMPANY\b[^>]*>.*?</SVCURRENTCOMPANY>\s*', '', content, flags=re.DOTALL | re.IGNORECASE)
+
+        # 6. Puthiya file aayi save cheyyunnu
         new_file_path = os.path.join(folder_path, "Cleaned_" + filename)
         with open(new_file_path, "w", encoding=enc) as f:
             f.write(content)
